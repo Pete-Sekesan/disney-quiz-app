@@ -23,7 +23,7 @@ const STORE = {
           'Villains Universe'
         ],
         correctAnswer: 'Villains Universe'
-      }
+      },
       {
           question: 'How many hotels are on property in Disneyland?',
           answers: [
@@ -33,7 +33,7 @@ const STORE = {
               '5'
           ],
           correctAnswer: '3'
-      }
+      },
       {
           question: 'What was the name of the first Disney Cruise Line ship?',
           answers: [
@@ -43,7 +43,7 @@ const STORE = {
               'Fantasy'
           ],
           correctAnswer: 'Magic'
-      }
+      },
       {
           question: 'What is the most recently opened Disney Resort?',
           answers: [
@@ -53,7 +53,7 @@ const STORE = {
               'Shanghai Disneyland'
           ],
           correctAnswer: 'Shanghai Disneyland'
-      }
+      },
     ],
     quizStarted: false,
     questionNumber: 0,
