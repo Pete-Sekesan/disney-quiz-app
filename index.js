@@ -1,28 +1,58 @@
 /**
- * Example store structure
+ *  STORE structure
  */
-const store = {
+const STORE = {
     // 5 or more questions are required
     questions: [
       {
-        question: 'What color is broccoli?',
+        question: 'What was the opening date of Walt Disney World Resort?',
         answers: [
-          'red',
-          'orange',
-          'pink',
-          'green'
+          'October 1st, 1971',
+          'July 17th, 1955',
+          'May 4th, 1981',
+          'January 9th, 1963'
         ],
-        correctAnswer: 'green'
+        correctAnswer: 'October 1st, 1971'
       },
       {
-        question: 'What is the current year?',
+        question: 'Which of the following is not a park located at Walt Disney World Resort in Florida?',
         answers: [
-          '1970',
-          '2015',
-          '2019',
-          '2005'
+          'EPCOT Center',
+          'Magic Kingdom',
+          'Animal Kingdom',
+          'Villains Universe'
         ],
-        correctAnswer: '2019'
+        correctAnswer: 'Villains Universe'
+      }
+      {
+          question: 'How many hotels are on property in Disneyland?',
+          answers: [
+              '2',
+              '3',
+              '1',
+              '5'
+          ],
+          correctAnswer: '3'
+      }
+      {
+          question: 'What was the name of the first Disney Cruise Line ship?',
+          answers: [
+              'Magic',
+              'Wonder',
+              'Dream',
+              'Fantasy'
+          ],
+          correctAnswer: 'Magic'
+      }
+      {
+          question: 'What is the most recently opened Disney Resort?',
+          answers: [
+              'Tokyo Disney',
+              'Disneyland Paris',
+              'Hong Kong Disneyland',
+              'Shanghai Disneyland'
+          ],
+          correctAnswer: 'Shanghai Disneyland'
       }
     ],
     quizStarted: false,
