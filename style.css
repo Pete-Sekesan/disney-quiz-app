@@ -6,6 +6,26 @@
     font-style: normal;
 }
 
+body{
+    background-color: lightgray;
+}
+
 h1 {
-    font-family: "waltographregular";
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background: lightgray;
+    width:80%;
+    padding: 40px;
+    margin: 55px auto 0 auto;
+    border-radius: 10px;
+
+}
+
+.container{
+  width:80%;
+  padding: 40px;
+  margin: 55px auto 0 auto;
+  background: gray;
+  border-radius: 10px;
+  text-align: center;
 }
