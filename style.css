@@ -1,10 +1,3 @@
-@font-face {
-    font-family: 'waltographregular';
-    src: url('waltograph42-webfont.woff2') format('woff2'),
-         url('waltograph42-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 body{
     background-color: lightgray;
@@ -28,4 +21,10 @@ h1 {
   background: gray;
   border-radius: 10px;
   text-align: center;
+}
+
+button {
+    font-weight: 400;
+    border-radius: 10px;
+    color:black;
 }
