@@ -78,11 +78,14 @@ const STORE = {
   /********** TEMPLATE GENERATION FUNCTIONS **********/
   
   // These functions return HTML templates
-  
+  $()
+
   
   /********** RENDER FUNCTION(S) **********/
 
   function renderQuizApp() {
+    
+    
     console.log('renderQuizApp ran');
   }
   // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -90,3 +93,8 @@ const STORE = {
   /********** EVENT HANDLER FUNCTIONS **********/
   
   // These functions handle events (submit, click, etc)
+  function handleSubmit(){
+
+    console.log('handleSubmit ran')
+  }
+

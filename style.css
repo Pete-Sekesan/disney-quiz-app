@@ -14,7 +14,7 @@ h1 {
 
 }
 
-.container{
+.container .start-screen {
   width:80%;
   padding: 40px;
   margin: 55px auto 0 auto;
@@ -25,6 +25,6 @@ h1 {
 
 button {
     font-weight: 400;
-    border-radius: 10px;
+    border-radius: 8px;
     color:black;
 }
