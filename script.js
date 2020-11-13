@@ -82,6 +82,7 @@ const STORE = {
     $('main').append('<h1 class= start-screen>Disney Quiz App</h1>');
   $('main').append('<p class= start-screen> Welcome to my Disney Quiz App. Please click the button below to begin</p>');
   $('main').append('<button class= btn> Let the Magic Begin </button>')
+  console.log('generateIntro ran');
   }
 
   
