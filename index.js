@@ -78,10 +78,11 @@ const STORE = {
   /********** TEMPLATE GENERATION FUNCTIONS **********/
   
   // These functions return HTML templates
-  $()
+  $('h1').html('Disney Quiz App');
+  
 
   
-  /********** RENDER FUNCTION(S) **********/
+  /********** RENDER FUNCTION(S) **********/ 
 
   function renderQuizApp() {
     
@@ -98,3 +99,4 @@ const STORE = {
     console.log('handleSubmit ran')
   }
 
+$()
