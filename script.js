@@ -79,28 +79,33 @@ const STORE = {
   
   // These functions return HTML templates
   function generateIntro(){
-    $('main').append('<h1 class= start-screen>Disney Quiz App</h1>');
-  $('main').append('<p class= start-screen> Welcome to my Disney Quiz App. Please click the button below to begin</p>');
+    $('main').append('<h1 class= startScreen>Disney Quiz App</h1>');
+  $('main').append('<p class= startScreen> Welcome to my Disney Quiz App. Please click the button below to begin</p>');
   $('main').append('<button class= btn> Let the Magic Begin </button>')
   console.log('generateIntro ran');
   }
 
+
+  function generateAnswersList(answers){
+
+  }
+
+
   
   /********** RENDER FUNCTION(S) **********/ 
 
-  function renderQuizApp() {
+  function renderQuestionText(){
     
     
-    console.log('renderQuizApp ran');
+    console.log('renderQuestionText ran');
   }
   // This function conditionally replaces the contents of the <main> tag based on the state of the store
   
   /********** EVENT HANDLER FUNCTIONS **********/
   
   // These functions handle events (submit, click, etc)
-  function handleSubmit(){
+  function handleAnswerSubmitted(){
 
-    console.log('handleSubmit ran')
   }
 
 $(generateIntro)

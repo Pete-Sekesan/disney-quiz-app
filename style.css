@@ -26,12 +26,16 @@ p {
     border-radius: 8px;
     margin-left: 600px;
     margin-top: 40px;
+    background-color: black;
+    color: white;
 }
 
-.start-screen {
+.startScreen, .questionForm {
     width:80%;
     padding: 40px;
     margin: 55px auto 0 auto;
     background:rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+
+
   }
