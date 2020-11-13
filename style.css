@@ -1,5 +1,37 @@
-header {
+body {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    margin: 0;
+    background: cover;
+    background-color: lightgray;
+  }
+
+
+h1 {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 5px;
+    margin: auto;
+    padding: 25px 0 25px 0;
 } 
 
+p {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+.btn{
+    align-items: center;
+    border-radius: 8px;
+    margin-left: 600px;
+    margin-top: 40px;
+}
+
+.start-screen {
+    width:80%;
+    padding: 40px;
+    margin: 55px auto 0 auto;
+    background:rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }

@@ -78,8 +78,11 @@ const STORE = {
   /********** TEMPLATE GENERATION FUNCTIONS **********/
   
   // These functions return HTML templates
-  $('h1').html('Disney Quiz App');
-  
+  function generateIntro(){
+    $('main').append('<h1 class= start-screen>Disney Quiz App</h1>');
+  $('main').append('<p class= start-screen> Welcome to my Disney Quiz App. Please click the button below to begin</p>');
+  $('main').append('<button class= btn> Let the Magic Begin </button>')
+  }
 
   
   /********** RENDER FUNCTION(S) **********/ 
@@ -99,4 +102,4 @@ const STORE = {
     console.log('handleSubmit ran')
   }
 
-$()
+$(generateIntro)
