@@ -98,8 +98,9 @@ function generateQuizInterface(){
   $('#quizDiv').append('<h1 class= header> Disney Quiz</h1>');
   $('#quizDiv').append('<p class= questionStatus> Question ${questionObject.index} out of ${store.questions.length}</p>');
   $('#quizDiv').append('<p class= quizScore> Score: ${store.score}</p>')
+  $('$quizDiv').append('<p class= questionText> ${questionObject.question.question} </p>');
   $('#quizDiv').append('<form class= quizForm></form>');
-}
+} 
 
 
 
