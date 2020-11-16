@@ -84,28 +84,53 @@ const STORE = {
   
 
   function generateIntroScreen(){
-    $("<div/>").attr('id','welcomeDiv').appendTo('main');
-    $('#welcomeDiv').append('<h1 class= header> Disney Quiz</h1>');
-    $('#welcomeDiv').append('<p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>');
-    $('#welcomeDiv').append('<button type=submit id=startButton autofocus> Let The Magic Begin</button>');
-    $('#startButton').addClass('btn');
+    $('<div/>').attr('id','welcomeDiv').appendTo('main');
+    $('#welcomeDiv').html(`
+    <h1 class= header> Disney Quiz App </h1>
+    <p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>
+    <button type=submit id=startButton class=btn autofocus> Let The Magic Begin</button>
+    `
+    )};
 
-};
+    
+
+function generateQuizHeader(){
+  $('<header/>').attr('id','quizHeader').appendTo('main');
+}
 
 function generateQuizInterface(){
   $('#welcomeDiv').empty();
-  $("<div/>").attr('id','quizDiv').appendTo('main');
-  $('#quizDiv').append('<h1 class= header> Disney Quiz</h1>');
-  $('#quizDiv').append('<p class= questionStatus> Question ${questionObject.index} out of ${store.questions.length}</p>');
-  $('#quizDiv').append('<p class= quizScore> Score: ${store.score}</p>')
-  $('$quizDiv').append('<p class= questionText> ${questionObject.question.question} </p>');
-  $('#quizDiv').append('<form class= quizForm></form>');
-} 
+  $('<div/>').attr('id','quizDiv').appendTo('main');
+  $('#quizDiv').html(`
+  <h1 class= header> Disney Quiz App </h1>
+  <p class= questionNum> Question of </p>
+  <p class= score> Score:  </p>
+  <p class= currentQuestion> </p>
+  <form class= questionForm>
+  <ol>
+  `)
+  
+}
+
+/*if(answer == correctAnswer) {
+  $('quizDiv').empty()
+  $('#quizDiv').html(`
+  <h1 class= header> Disney Quiz App </h1>
+  <h1 class= correct>That is Correct!</h1>
+  <button type="submit" class="nextQuestion">Next</button>
+  <button type="submit" class="resetQuiz">Reset Quiz</button>
+  `)
+}
+*/
 
 
 
 /********** RENDER FUNCTION(S) **********/ 
 
+
+
+
+//
 
 
  /********** EVENT HANDLER FUNCTIONS **********/
