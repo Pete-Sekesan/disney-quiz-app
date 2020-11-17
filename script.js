@@ -86,11 +86,34 @@ const STORE = {
 
 /********** EVENT HANDLERS **********/
 	
-  
+  //Create button to submit. If correct, show screen saying correct and move to next question
+  function handleStartQuiz() {
+    $('#startButton').on('click', (event) => {
+      event.preventDefault();
+      STORE.quizStarted = true;
+      renderQuiz()
+      });
+    }
 
-
-
-
+    function handleSubmitAnswer() {
+      $('#submitAnswer').on('click', (event) => {
+        event.preventDefault();
+        let submittedAnswer = $("input[name='answers']:checked").val()
+        let correctAnswer = STORE.questions[STORE.questionNumber].correctAnswer
+        if (submittedAnswer == null) {
+          alert('Please select an option first.')
+        }
+        else {
+          if(submittedAnswer === correctAnswer) {
+            STORE.score += 1;
+            STORE.isCorrect = true;
+          }
+          STORE.usersAnswer = submittedAnswer; 
+          STORE.submittingAnswer = true;
+          renderQuiz();
+        }    
+      });
+    }
 
 
 /********** RENDER FUNCTIONS **********/ 
@@ -107,18 +130,24 @@ function generateStartPage() {
   `)
 };
 //render main quiz interface page html
+//Show Current Question 
 function generateQuizInterface(questionList) {
+  $('#welcomeDiv').empty();
   let questionNumber = questionList[STORE.questionNumber];
 $('<div/>').attr('id', 'quizDiv').appendTo('main');
   $('#quizDiv').html(`
   <p class= currentQuestion>${questionNumber.question} </p>
   <form class= answerList> 
   <ol>
+  ${answersArray(questionNumber.answers)}
+  </ol>
+  <button type="submit" id="submitAnswer">Submit</button>
+  </form>
   `
   )
 };
 // create an array to hold current questions answers and it's index
-function (answersArray){
+function answersArray(answers){
 let answerArray = [];
 let indexArray = [];
 answers.forEach(answer => {
@@ -176,42 +205,35 @@ function generateScoreHeader() {
 
 
 
-
 //Function to render all html screens
 function renderQuiz() {
-  
   let html = '';
-  if (STORE.quizStarted === false){
+  if (STORE.quizStarted === false) {
     $('main').html(generateStartPage());
-    return;
-  }
-  else if (STORE.questionNumber >= 0 && STORE.questionNumber < STORE.questions.length){
-    if (STORE.submittingAnswer === true){
-      $('header').html(generateScoreHeader())
+    
+  } else if (STORE.questionNumber >= 0 && STORE.questionNumber < STORE.questions.length) {
+    if (STORE.submittingAnswer === true) {
+      $('header').html(generateScoreHeader());
+      $('main').html(generateSubmissionPage());
+    } else {
+      $('header').html(generateScoreHeader());
       $('main').html(generateQuizInterface());
     }
-    else {
-      $('header').html(generateScoreHeader())
-      $('main').html()
-    }
+    
+    
   }
+} 
+
+
+
   
-  console.log('renderQuiz ran!')
-  //Have button start quiz
 
-  //Show Current Question 
 
-  //Create button to submit. If correct, show screen saying correct and move to next question
-  //If correct, add 1 to score, and move up the question progress
-  //If incorrect, show screen saying incorrect and move to next question, move up question progress only 
-  //When complete, show final screen with total score.
-  //Create button to restart quiz 
-
-}
-// Launching Quiz App
 function handleQuizApp() {
-  renderQuiz()
+  renderQuiz();
   console.log('handleQuizApp ran!')
+  handleStartQuiz();
+  console.log('handleStartQuiz Ran!')
 
 }
 
