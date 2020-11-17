@@ -78,50 +78,15 @@ const STORE = {
   /********** TEMPLATE GENERATION FUNCTIONS **********/
   
   // These functions return HTML templates
-  $( document ).ready(function() { 
-    generateIntroScreen()
-    console.log( "Doc is ready!" ); 
+  
   
 
-  function generateIntroScreen(){
-    $('<div/>').attr('id','welcomeDiv').appendTo('main');
-    $('#welcomeDiv').html(`
-    <h1 class= header> Disney Quiz App </h1>
-    <p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>
-    <button type=submit id=startButton class=btn autofocus> Let The Magic Begin</button>
-    `
-    )};
-
-    
-
-function generateQuizHeader(){
-  $('<header/>').attr('id','quizHeader').appendTo('main');
-}
-
-function generateQuizInterface(){
-  $('#welcomeDiv').empty();
-  $('<div/>').attr('id','quizDiv').appendTo('main');
-  $('#quizDiv').html(`
-  <h1 class= header> Disney Quiz App </h1>
-  <p class= questionNum> Question of </p>
-  <p class= score> Score:  </p>
-  <p class= currentQuestion> </p>
-  <form class= questionForm>
-  <ol>
-  `)
+/********** EVENT HANDLERS **********/
+	
   
-}
 
-/*if(answer == correctAnswer) {
-  $('quizDiv').empty()
-  $('#quizDiv').html(`
-  <h1 class= header> Disney Quiz App </h1>
-  <h1 class= correct>That is Correct!</h1>
-  <button type="submit" class="nextQuestion">Next</button>
-  <button type="submit" class="resetQuiz">Reset Quiz</button>
-  `)
-}
-*/
+
+
 
 
 
@@ -130,19 +95,81 @@ function generateQuizInterface(){
 
 
 
-//
+
+//Render start page html
+function generateStartPage() {
+  $('<div/>').attr('id', 'welcomeDiv').appendTo('main');
+  $('#welcomeDiv').html(`
+  <h1 class= header> Disney Quiz App </h1>
+  <p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>
+  <button type=submit id=startButton class=btn autofocus> Let The Magic Begin</button>
+  `)
+};
+//render main quiz interface page html
+function generateQuizInterface() {
+  $('<div/>').attr('id', 'quizDiv').appendTo('main');
+  $('#quizDiv').html(`
+  <h1 class= header> Disney Quiz App </h1>
+  <p class= currentQuestion> </p>`)
+};
+
+//render correct answer screen html
+function generateCorrectScreen() {
+  $('quizDiv').html(
+    `<p> That is Correct! </p>
+      <button type=submit id=nextQuestion class=btn autofocus> Next</button>
+`
+  )
+}
+
+//render incorrect answer screen html
+function generateWrongAnswer() {
+  $('quizDiv').html(
+    `<p> Sorry, That Answer is Incorrect! </p>
+      <button type=submit id=nextQuestion class=btn autofocus> Next</button>
+`
+  )
+}
+
+//When complete,  render final screen with total score.
+function generateResultsPage() {
+  $('quizDiv').html(`
+    <p> Great Job! You finished with a final score of :  </p>
+    <button type=submit id=resetQuiz class=btn autofocus> Reset Quiz</button>`)
+}
+//Display Header showing score and question progress
+function generateScoreHeader() {
+  $('<div/>').attr('id', 'scoreHeader').appendTo('main');
+  $('#scoreHeader').html(`<p class= questionNum> Question of </p>
+ <p class= score> Score:  </p>`)
+}
 
 
- /********** EVENT HANDLER FUNCTIONS **********/
-
- $('#startButton').on('click', (event) =>{
-  generateQuizInterface()
-  });
 
 
+//Function to render all html screens
+function renderQuiz() {
+  generateStartPage()
+
+  console.log('renderQuiz ran!')
+  //Have button start quiz
+
+  //Show Current Question 
+
+  //Create button to submit. If correct, show screen saying correct and move to next question
+  //If correct, add 1 to score, and move up the question progress
+  //If incorrect, show screen saying incorrect and move to next question, move up question progress only 
+  //When complete, show final screen with total score.
+  //Create button to restart quiz 
+
+}
+// Launching Quiz App
+function handleQuizApp() {
+  console.log('handleQuizApp ran!')
+  renderQuiz()
 
 
-});
+}
 
 
- 
+$(handleQuizApp)
