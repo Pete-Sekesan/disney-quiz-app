@@ -96,6 +96,8 @@ const STORE = {
 /********** RENDER FUNCTIONS **********/ 
 
 
+
+
 //Render start page html
 function generateStartPage() {
   $('<div/>').attr('id', 'welcomeDiv').appendTo('main');
@@ -105,11 +107,39 @@ function generateStartPage() {
   `)
 };
 //render main quiz interface page html
-function generateQuizInterface() {
-  $('<div/>').attr('id', 'quizDiv').appendTo('main');
+function generateQuizInterface(questionList) {
+  let questionNumber = questionList[STORE.questionNumber];
+$('<div/>').attr('id', 'quizDiv').appendTo('main');
   $('#quizDiv').html(`
-  <p class= currentQuestion> </p>`)
+  <p class= currentQuestion>${questionNumber.question} </p>
+  <form class= answerList> 
+  <ol>
+  `
+  )
 };
+// create an array to hold current questions answers and it's index
+function (answersArray){
+let answerArray = [];
+let indexArray = [];
+answers.forEach(answer => {
+  answerArray.push(answer);
+  indexArray.push(answers.indexOf(answer));
+  
+});
+
+}
+
+// render answer options
+function createAnswerOptions(answer){
+  let questionNumber = store.questionNumber;
+  let answersID = store.questions[questionNumber].answers.indexOf(answer);
+  $('quizDiv').html(`
+  <li>      
+  <input type="radio" name="answers" id="answer-${answersID}" value="${answer}">
+  <label for="answer-${answersID}"> ${answer}</label>      
+</li>
+`
+)}
 
 //render answer submission screen html
 function generateSubmissionPage() {
@@ -139,9 +169,9 @@ function generateFinalResultsPage() {
 }
 //render Header showing score and question progress
 function generateScoreHeader() {
-  $('<div/>').attr('id', 'scoreHeader').appendTo('main');
-  $('#scoreHeader').html(`<p class= questionNum> Question of </p>
- <p class= score> Score:  </p>`)
+  $('<div/>').attr('id', 'scoreHeader').appendTo('header');
+  $('#scoreHeader').html(`<p class= questionNum> Question ${STORE.questionNumber + 1} out of ${STORE.questions.length} </p>
+ <p class= score> Score: ${STORE.score}  </p>`)
 }
 
 
