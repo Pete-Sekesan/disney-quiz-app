@@ -57,7 +57,10 @@ const STORE = {
     ],
     quizStarted: false,
     questionNumber: 0,
-    score: 0
+    score: 0,
+    submittingAnswer: false,
+    isCorrect: false,
+    usersAnswer: ""
   };
   
   /**
@@ -90,10 +93,7 @@ const STORE = {
 
 
 
-/********** RENDER FUNCTION(S) **********/ 
-
-
-
+/********** RENDER FUNCTIONS **********/ 
 
 
 //Render start page html
@@ -137,7 +137,7 @@ function generateResultsPage() {
     <p> Great Job! You finished with a final score of :  </p>
     <button type=submit id=resetQuiz class=btn autofocus> Reset Quiz</button>`)
 }
-//Display Header showing score and question progress
+//render Header showing score and question progress
 function generateScoreHeader() {
   $('<div/>').attr('id', 'scoreHeader').appendTo('main');
   $('#scoreHeader').html(`<p class= questionNum> Question of </p>
@@ -150,7 +150,7 @@ function generateScoreHeader() {
 //Function to render all html screens
 function renderQuiz() {
   generateStartPage()
-
+  
   console.log('renderQuiz ran!')
   //Have button start quiz
 
