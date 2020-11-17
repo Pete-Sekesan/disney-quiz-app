@@ -100,7 +100,6 @@ const STORE = {
 function generateStartPage() {
   $('<div/>').attr('id', 'welcomeDiv').appendTo('main');
   $('#welcomeDiv').html(`
-  <h1 class= header> Disney Quiz App </h1>
   <p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>
   <button type=submit id=startButton class=btn autofocus> Let The Magic Begin</button>
   `)
@@ -109,30 +108,31 @@ function generateStartPage() {
 function generateQuizInterface() {
   $('<div/>').attr('id', 'quizDiv').appendTo('main');
   $('#quizDiv').html(`
-  <h1 class= header> Disney Quiz App </h1>
   <p class= currentQuestion> </p>`)
 };
 
-//render correct answer screen html
-function generateCorrectScreen() {
-  $('quizDiv').html(
-    `<p> That is Correct! </p>
-      <button type=submit id=nextQuestion class=btn autofocus> Next</button>
-`
-  )
+//render answer submission screen html
+function generateSubmissionPage() {
+  let correctAnswer = STORE.questions[STORE.questionNumber].correctAnswer;
+  console.log(correctAnswer);
+  if (STORE.isCorrect === true){
+    $('quizDiv').html(`
+    <p> That is Correct!!</p>
+    <button type=submit id=nextQuestion class=btn autofocus> Next</button>`)
 }
+else {
+  $('quizDiv').html(`
+  <p> Sorry! That is not the correct answer</p>
+  <p>The correct answer was ${correctAnswer}.</p>
+  <button type=submit id=nextQuestion class=btn autofocus> Next</button>`)
 
-//render incorrect answer screen html
-function generateWrongAnswer() {
-  $('quizDiv').html(
-    `<p> Sorry, That Answer is Incorrect! </p>
-      <button type=submit id=nextQuestion class=btn autofocus> Next</button>
-`
-  )
+
 }
+}
+  
 
 //When complete,  render final screen with total score.
-function generateResultsPage() {
+function generateFinalResultsPage() {
   $('quizDiv').html(`
     <p> Great Job! You finished with a final score of :  </p>
     <button type=submit id=resetQuiz class=btn autofocus> Reset Quiz</button>`)
@@ -149,7 +149,22 @@ function generateScoreHeader() {
 
 //Function to render all html screens
 function renderQuiz() {
-  generateStartPage()
+  
+  let html = '';
+  if (STORE.quizStarted === false){
+    $('main').html(generateStartPage());
+    return;
+  }
+  else if (STORE.questionNumber >= 0 && STORE.questionNumber < STORE.questions.length){
+    if (STORE.submittingAnswer === true){
+      $('header').html(generateScoreHeader())
+      $('main').html(generateQuizInterface());
+    }
+    else {
+      $('header').html(generateScoreHeader())
+      $('main').html()
+    }
+  }
   
   console.log('renderQuiz ran!')
   //Have button start quiz
@@ -165,9 +180,8 @@ function renderQuiz() {
 }
 // Launching Quiz App
 function handleQuizApp() {
-  console.log('handleQuizApp ran!')
   renderQuiz()
-
+  console.log('handleQuizApp ran!')
 
 }
 
