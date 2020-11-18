@@ -174,7 +174,7 @@ function renderIntroScreen() {
     }
   }
   //This function creates the template for the Quiz results
-  function createQuizResults() {
+  function generateFinalResultsPage() {
     return `
       <div class="results-page">
       <form>
@@ -205,7 +205,7 @@ function renderIntroScreen() {
        } 
     }
     else {
-      $("main").html(createQuizResults());
+      $("main").html(generateFinalResultsPage());
     }
   }
   
@@ -216,7 +216,7 @@ function renderIntroScreen() {
   // These functions handle events (submit, click, etc)
   
   //This handles when a user clicks on the start button on the welcome page
-  function handleStartQuizClick() {
+  function handleStartQuiz() {
     $("main").on("click", "#startQuiz", (event) => {
       event.preventDefault();
       store.quizStarted = true;
@@ -225,7 +225,7 @@ function renderIntroScreen() {
   }
   
   //This handles the submit answer button on the questions form
-  function handleSubmitAnswerClick() {
+  function handleSubmitAnswer() {
     $("main").on("click", "#submitAnswer", (event) => {
       event.preventDefault();
       let submittedAnswer = $("input[name='answers']:checked").val();
@@ -246,7 +246,7 @@ function renderIntroScreen() {
   }
   
   //This will handle the next question button click event
-  function handleNextQuestionClick() {
+  function handleNextQuestion() {
     $("main").on("click", "#next-question", (event) =>{
       event.preventDefault();
       store.isCorrect = false;
@@ -260,7 +260,7 @@ function renderIntroScreen() {
   }
   
   //This function will handle the restart the quiz button and reset the quiz to start over.
-  function handleRestartQuizClick() {
+  function handleRestartQuiz() {
     $("main").on("click", "#restart-quiz", (event) => {
       event.preventDefault();
       store.score = 0;
@@ -272,10 +272,10 @@ function renderIntroScreen() {
   // This is the callback function for the app that initializes the script
   function handleQuizApp () {
     renderQuizApp();
-    handleStartQuizClick();
-    handleSubmitAnswerClick();
-    handleNextQuestionClick();
-    handleRestartQuizClick();
+    handleStartQuiz();
+    handleSubmitAnswer();
+    handleNextQuestion();
+    handleRestartQuiz();
   }
   
   $(handleQuizApp);
