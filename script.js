@@ -149,25 +149,25 @@ function renderIntroScreen() {
     //console.log(correctAnswer);
     if (store.isCorrect === true) {
       return `
-        <div class="submission-result">
+        <div class='submissionResult'>
           <form>
             <p>${correctAnswer} is correct!</p>
             <p>Great Job!</p>
             <p>Current Score: ${store.score} out of ${store.questions.length}</p>
-            <button type="submit" id="next-question">Next</button>
+            <button type='submit' id='next-question'>Next</button>
           </form>
         </div>
       `
     }
     else {
       return `
-      <div class="submission-result">
+      <div class='submissionResult'>
         <form>
           <p>${store.usersAnswer} is incorrect!</p>
           <p>The correct answer was ${correctAnswer}.</p>
           <p> Just keep swimming!</p>
           <p>Current Score: ${store.score} out of ${store.questions.length}</p>
-          <button type="submit" id="next-question">Next</button>
+          <button type='submit' id='next-question'>Next</button>
         </form>
       </div>
     `
