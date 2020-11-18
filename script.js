@@ -24,12 +24,12 @@ const store = {
       {
           question: 'How many hotels are on property in Disneyland?',
           answers: [
-              '2',
-              '3',
-              '1',
-              '5'
+              'Two',
+              'Three',
+              'One',
+              'Five'
           ],
-          correctAnswer: '3'
+          correctAnswer: 'Three'
       },
       {
           question: 'What was the name of the first Disney Cruise Line ship?',
@@ -118,7 +118,7 @@ function renderIntroScreen() {
   
   
   //This function will create the template for the questions main section
-  function createQuizQuestionPageMain (questionsList) {
+  function generateQuestionsScreen(questionsList) {
    
     let questionNumber = questionsList[store.questionNumber];
    
@@ -135,7 +135,7 @@ function renderIntroScreen() {
   }
   
   //This function will create the template for the quiz questions header section
-  function createQuizQuestionPageHeader () {
+  function generateScoreHeader() {
     return `
     <h1>Disney Quiz</h1>
     <h2>Question ${store.questionNumber + 1} out of ${store.questions.length}</h2>
@@ -144,7 +144,7 @@ function renderIntroScreen() {
   }
   
   //This function will create the submission results page that tells the user if the selection is correct or incorrect
-  function createSubmissionResultsPage() {
+  function generateResultsPage() {
     let correctAnswer = store.questions[store.questionNumber].correctAnswer;
     //console.log(correctAnswer);
     if (store.isCorrect === true) {
@@ -196,12 +196,12 @@ function renderIntroScreen() {
     }
     else if (store.questionNumber >= 0 && store.questionNumber < store.questions.length) {
        if (store.submittingAnswer === true) {
-          $("header").html(createQuizQuestionPageHeader())
-          $("main").html(createSubmissionResultsPage());
+          $("header").html(generateScoreHeader())
+          $("main").html(generateResultsPage());
        }
        else {
-          $("header").html(createQuizQuestionPageHeader());
-          $("main").html(createQuizQuestionPageMain(store.questions));
+          $("header").html(generateScoreHeader());
+          $("main").html(generateQuestionsScreen(store.questions));
        } 
     }
     else {
