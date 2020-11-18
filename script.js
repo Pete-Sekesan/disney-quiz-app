@@ -1,7 +1,4 @@
-/**
- *  STORE structure
- */
-const STORE = {
+const store = {
     // 5 or more questions are required
     questions: [
       {
@@ -81,161 +78,204 @@ const STORE = {
   /********** TEMPLATE GENERATION FUNCTIONS **********/
   
   // These functions return HTML templates
-  
-  
-
-/********** EVENT HANDLERS **********/
-	
-  //Create button to submit. If correct, show screen saying correct and move to next question
-  function handleStartQuiz() {
-    $('#startButton').on('click', (event) => {
-      event.preventDefault();
-      STORE.quizStarted = true;
-      renderQuiz()
-      });
-    }
-
-    function handleSubmitAnswer() {
-      $('#submitAnswer').on('click', (event) => {
-        event.preventDefault();
-        let submittedAnswer = $("input[name='answers']:checked").val()
-        let correctAnswer = STORE.questions[STORE.questionNumber].correctAnswer
-        if (submittedAnswer == null) {
-          alert('Please select an option first.')
-        }
-        else {
-          if(submittedAnswer === correctAnswer) {
-            STORE.score += 1;
-            STORE.isCorrect = true;
-          }
-          STORE.usersAnswer = submittedAnswer; 
-          STORE.submittingAnswer = true;
-          renderQuiz();
-        }    
-      });
-    }
-
-
-/********** RENDER FUNCTIONS **********/ 
-
-
-
-
-//Render start page html
-function generateStartPage() {
-  $('<div/>').attr('id', 'welcomeDiv').appendTo('main');
-  $('#welcomeDiv').html(`
-  <p class= welcomeMessage> Welcome to my Disney Quiz App! Put your Disney Parks and Resorts knowledge to the test! </p>
-  <button type=submit id=startButton class=btn autofocus> Let The Magic Begin</button>
-  `)
-};
-//render main quiz interface page html
-//Show Current Question 
-function generateQuizInterface(questionList) {
-  $('#welcomeDiv').empty();
-  let questionNumber = questionList[STORE.questionNumber];
-$('<div/>').attr('id', 'quizDiv').appendTo('main');
-  $('#quizDiv').html(`
-  <p class= currentQuestion>${questionNumber.question} </p>
-  <form class= answerList> 
-  <ol>
-  ${answersArray(questionNumber.answers)}
-  </ol>
-  <button type="submit" id="submitAnswer">Submit</button>
-  </form>
-  `
-  )
-};
-// create an array to hold current questions answers and it's index
-function answersArray(answers){
-let answerArray = [];
-let indexArray = [];
-answers.forEach(answer => {
-  answerArray.push(answer);
-  indexArray.push(answers.indexOf(answer));
-  
-});
-
+  //This is the HTML that will be inserted when the user begins the quiz
+function renderIntroScreen() {
+    return `
+    <div class='introScreen'>
+            <form>
+            <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
+                  <button type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
+              </form>
+          </div>
+    `
 }
-
-// render answer options
-function createAnswerOptions(answer){
-  let questionNumber = store.questionNumber;
-  let answersID = store.questions[questionNumber].answers.indexOf(answer);
-  $('quizDiv').html(`
-  <li>      
-  <input type="radio" name="answers" id="answer-${answersID}" value="${answer}">
-  <label for="answer-${answersID}"> ${answer}</label>      
-</li>
-`
-)}
-
-//render answer submission screen html
-function generateSubmissionPage() {
-  let correctAnswer = STORE.questions[STORE.questionNumber].correctAnswer;
-  console.log(correctAnswer);
-  if (STORE.isCorrect === true){
-    $('quizDiv').html(`
-    <p> That is Correct!!</p>
-    <button type=submit id=nextQuestion class=btn autofocus> Next</button>`)
-}
-else {
-  $('quizDiv').html(`
-  <p> Sorry! That is not the correct answer</p>
-  <p>The correct answer was ${correctAnswer}.</p>
-  <button type=submit id=nextQuestion class=btn autofocus> Next</button>`)
-
-
-}
-}
-  
-
-//When complete,  render final screen with total score.
-function generateFinalResultsPage() {
-  $('quizDiv').html(`
-    <p> Great Job! You finished with a final score of :  </p>
-    <button type=submit id=resetQuiz class=btn autofocus> Reset Quiz</button>`)
-}
-//render Header showing score and question progress
-function generateScoreHeader() {
-  $('<div/>').attr('id', 'scoreHeader').appendTo('header');
-  $('#scoreHeader').html(`<p class= questionNum> Question ${STORE.questionNumber + 1} out of ${STORE.questions.length} </p>
- <p class= score> Score: ${STORE.score}  </p>`)
-}
-
-
-
-//Function to render all html screens
-function renderQuiz() {
-  let html = '';
-  if (STORE.quizStarted === false) {
-    $('main').html(generateStartPage());
+  //This function creates two arrays housing the current question object's answers list and index numbers
+  function generateAnswersArray(answers){
+    let answerArray = [];
+    let indexArray = [];
+    answers.forEach(answer => {
+      answerArray.push(answer);
+      indexArray.push(answers.indexOf(answer));
+    });
+    console.log(answerArray);
+    console.log(indexArray);
     
-  } else if (STORE.questionNumber >= 0 && STORE.questionNumber < STORE.questions.length) {
-    if (STORE.submittingAnswer === true) {
-      $('header').html(generateScoreHeader());
-      $('main').html(generateSubmissionPage());
-    } else {
-      $('header').html(generateScoreHeader());
-      $('main').html(generateQuizInterface());
-    }
-    
-    
+    //returns a string with all of the list items from each indexed answer together
+    return answerArray.map(answer => generateAnswersList(answer)).join('');
   }
-} 
-
-
-
   
-
-
-function handleQuizApp() {
-  renderQuiz();
-  console.log('handleQuizApp ran!')
-  handleStartQuiz();
-  console.log('handleStartQuiz Ran!')
-
-}
-
-
-$(handleQuizApp)
+  function generateAnswersList(answer){
+    let questionNumber = store.questionNumber;
+    let answerId = store.questions[questionNumber].answers.indexOf(answer);
+  
+    return `
+      <li>      
+        <input type='radio' name='answers' id='answer-${answerId}' value='${answer}'>
+        <label for='answer-${answerId}'> ${answer}</label>      
+      </li>
+    `;
+  }
+  
+  
+  //This function will create the template for the questions main section
+  function createQuizQuestionPageMain (questionsList) {
+   
+    let questionNumber = questionsList[store.questionNumber];
+   
+    return `
+    <div class='questionsScreen'>
+      <p>${questionNumber.question}</p>
+      <form>
+        <ol>
+        ${generateAnswersArray(questionNumber.answers)}
+        </ol>
+        <button type='submit' id='submitAnswer'>Submit</button>
+      </form>
+    </div>`
+  }
+  
+  //This function will create the template for the quiz questions header section
+  function createQuizQuestionPageHeader () {
+    return `
+    <h1>Disney Quiz</h1>
+    <h2>Question ${store.questionNumber + 1} out of ${store.questions.length}</h2>
+    <h2>Current Score: ${store.score}</h2>
+    `
+  }
+  
+  //This function will create the submission results page that tells the user if the selection is correct or incorrect
+  function createSubmissionResultsPage() {
+    let correctAnswer = store.questions[store.questionNumber].correctAnswer;
+    //console.log(correctAnswer);
+    if (store.isCorrect === true) {
+      return `
+        <div class="submission-result">
+          <form>
+            <p>${correctAnswer} is correct!</p>
+            <p>Great Job!</p>
+            <p>Current Score: ${store.score} out of ${store.questions.length}</p>
+            <button type="submit" id="next-question">Next</button>
+          </form>
+        </div>
+      `
+    }
+    else {
+      return `
+      <div class="submission-result">
+        <form>
+          <p>${store.usersAnswer} is incorrect!</p>
+          <p>The correct answer was ${correctAnswer}.</p>
+          <p> Just keep swimming!</p>
+          <p>Current Score: ${store.score} out of ${store.questions.length}</p>
+          <button type="submit" id="next-question">Next</button>
+        </form>
+      </div>
+    `
+    }
+  }
+  //This function creates the template for the Quiz results
+  function createQuizResults() {
+    return `
+      <div class="results-page">
+      <form>
+          <h3>Congrats, you finished the quiz!</h3>
+          <p>Your Results: ${store.score} out of ${store.questions.length}</p>
+          <p> "It's kind of fun to do the impossible" - Walt Disney</p>
+          <button type="submit" id="restartQuiz">Restart Quiz</button>
+      </form>
+    </div>
+    `
+  }
+  /********** RENDER FUNCTION(S) **********/
+  
+  function renderQuizApp() {
+    let html =""
+    if (store.quizStarted === false) {
+      $("main").html(renderIntroScreen());
+      return;
+    }
+    else if (store.questionNumber >= 0 && store.questionNumber < store.questions.length) {
+       if (store.submittingAnswer === true) {
+          $("header").html(createQuizQuestionPageHeader())
+          $("main").html(createSubmissionResultsPage());
+       }
+       else {
+          $("header").html(createQuizQuestionPageHeader());
+          $("main").html(createQuizQuestionPageMain(store.questions));
+       } 
+    }
+    else {
+      $("main").html(createQuizResults());
+    }
+  }
+  
+  // This function conditionally replaces the contents of the <main> tag based on the state of the store
+  
+  /********** EVENT HANDLER FUNCTIONS **********/
+  
+  // These functions handle events (submit, click, etc)
+  
+  //This handles when a user clicks on the start button on the welcome page
+  function handleStartQuizClick() {
+    $("main").on("click", "#startQuiz", (event) => {
+      event.preventDefault();
+      store.quizStarted = true;
+      renderQuizApp();
+    });
+  }
+  
+  //This handles the submit answer button on the questions form
+  function handleSubmitAnswerClick() {
+    $("main").on("click", "#submitAnswer", (event) => {
+      event.preventDefault();
+      let submittedAnswer = $("input[name='answers']:checked").val();
+      let correctAnswer = store.questions[store.questionNumber].correctAnswer
+      if (submittedAnswer == null) {
+        alert("Please select an option first.")
+      }
+      else {
+        if(submittedAnswer === correctAnswer) {
+          store.score += 1;
+          store.isCorrect = true;
+        }
+        store.usersAnswer = submittedAnswer; 
+        store.submittingAnswer = true;
+        renderQuizApp();
+      }    
+    });
+  }
+  
+  //This will handle the next question button click event
+  function handleNextQuestionClick() {
+    $("main").on("click", "#next-question", (event) =>{
+      event.preventDefault();
+      store.isCorrect = false;
+      store.submittingAnswer = false;
+      store.usersAnswer = "";
+      if (store.questionNumber < store.questions.length) {
+        store.questionNumber += 1;
+      }    
+      renderQuizApp();
+    });
+  }
+  
+  //This function will handle the restart the quiz button and reset the quiz to start over.
+  function handleRestartQuizClick() {
+    $("main").on("click", "#restart-quiz", (event) => {
+      event.preventDefault();
+      store.score = 0;
+      store.quizStarted = false;
+      store.questionNumber = 0;
+      renderQuizApp();
+    });
+  }
+  // This is the callback function for the app that initializes the script
+  function handleQuizApp () {
+    renderQuizApp();
+    handleStartQuizClick();
+    handleSubmitAnswerClick();
+    handleNextQuestionClick();
+    handleRestartQuizClick();
+  }
+  
+  $(handleQuizApp);
