@@ -9,6 +9,8 @@ body {
     margin: 0;
     background: cover;
     background-color: lightgray;
+    display: flex;
+    flex-direction: column;
   }
 
 
@@ -38,12 +40,19 @@ p {
     
 }
 
-.startScreen, .questionForm {
-    width:80%;
-    padding: 40px;
-    margin: 55px auto 0 auto;
-    background:rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
 
+.questionScreen{
+  text-align: center;
+}
 
+header{
+  text-align: center;
+}
+  ol{
+    text-align: center;
+   list-style: none;
+    display: block;
+  }
+  li{
+    text-align: center;
   }

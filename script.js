@@ -84,7 +84,7 @@ function renderIntroScreen() {
     <div class='introScreen'>
             <form>
             <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
-                  <button type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
+                  <button class='btn' type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
               </form>
           </div>
     `
@@ -181,7 +181,7 @@ function renderIntroScreen() {
           <h3>Congrats, you finished the quiz!</h3>
           <p>Your Results: ${store.score} out of ${store.questions.length}</p>
           <p> "It's kind of fun to do the impossible" - Walt Disney</p>
-          <button type="submit" id="restartQuiz">Restart Quiz</button>
+          <button type='submit' id='restartQuiz'>Restart Quiz</button>
       </form>
     </div>
     `
@@ -191,21 +191,21 @@ function renderIntroScreen() {
   function renderQuizApp() {
     let html =""
     if (store.quizStarted === false) {
-      $("main").html(renderIntroScreen());
+      $('main').html(renderIntroScreen());
       return;
     }
     else if (store.questionNumber >= 0 && store.questionNumber < store.questions.length) {
        if (store.submittingAnswer === true) {
-          $("header").html(generateScoreHeader())
-          $("main").html(generateResultsPage());
+          $('header').html(generateScoreHeader())
+          $('main').html(generateResultsPage());
        }
        else {
-          $("header").html(generateScoreHeader());
-          $("main").html(generateQuestionsScreen(store.questions));
+          $('header').html(generateScoreHeader());
+          $('main').html(generateQuestionsScreen(store.questions));
        } 
     }
     else {
-      $("main").html(generateFinalResultsPage());
+      $('main').html(generateFinalResultsPage());
     }
   }
   
@@ -217,7 +217,7 @@ function renderIntroScreen() {
   
   //This handles when a user clicks on the start button on the welcome page
   function handleStartQuiz() {
-    $("main").on("click", "#startQuiz", (event) => {
+    $('main').on('click', '#startQuiz', (event) => {
       event.preventDefault();
       store.quizStarted = true;
       renderQuizApp();
@@ -226,12 +226,12 @@ function renderIntroScreen() {
   
   //This handles the submit answer button on the questions form
   function handleSubmitAnswer() {
-    $("main").on("click", "#submitAnswer", (event) => {
+    $('main').on('click', '#submitAnswer', (event) => {
       event.preventDefault();
       let submittedAnswer = $("input[name='answers']:checked").val();
       let correctAnswer = store.questions[store.questionNumber].correctAnswer
       if (submittedAnswer == null) {
-        alert("Please select an option first.")
+        alert('Please choose an answer!')
       }
       else {
         if(submittedAnswer === correctAnswer) {
@@ -247,7 +247,7 @@ function renderIntroScreen() {
   
   //This will handle the next question button click event
   function handleNextQuestion() {
-    $("main").on("click", "#next-question", (event) =>{
+    $('main').on('click', '#next-question', (event) =>{
       event.preventDefault();
       store.isCorrect = false;
       store.submittingAnswer = false;
@@ -261,7 +261,7 @@ function renderIntroScreen() {
   
   //This function will handle the restart the quiz button and reset the quiz to start over.
   function handleRestartQuiz() {
-    $("main").on("click", "#restart-quiz", (event) => {
+    $('main').on('click', '#restart-quiz', (event) => {
       event.preventDefault();
       store.score = 0;
       store.quizStarted = false;
