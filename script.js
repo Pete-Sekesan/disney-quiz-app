@@ -80,17 +80,19 @@ const store = {
   // These functions return HTML templates
   //This is the HTML that will be inserted when the user begins the quiz
 function renderIntroScreen() {
-    return `
-    <div class='introScreen'>
-            <form>
-            <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
-                  <button class='btn' type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
-              </form>
-          </div>
-    `
+return `
+  <div class='introScreen'>
+          <form>
+          <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
+                <button class='btn' type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
+            </form>
+        </div>
+  `
 }
+
+
   //This function creates two arrays housing the current question object's answers list and index numbers
-  function generateAnswersArray(answers){
+  function generateAnswersArray(answers) {
     let answerArray = [];
     let indexArray = [];
     answers.forEach(answer => {
