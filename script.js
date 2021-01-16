@@ -165,8 +165,7 @@ return `
       return `
       <div class='submissionResult wrapper group'>
         <form>
-          <p>${store.usersAnswer} is incorrect!</p>
-          <p>The correct answer was ${correctAnswer}.</p>
+          <p>${store.usersAnswer} is incorrect! The correct answer was ${correctAnswer}.</p>
           <p> Just keep swimming!</p>
           <p>Current Score: ${store.score} out of ${store.questions.length}</p>
           <button type='submit' class='btn' id='next-question'>Next</button>
