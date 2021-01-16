@@ -179,9 +179,8 @@ return `
     return `
       <div class="results-page wrapper group">
       <form>
-          <h3>Congrats, you finished the quiz!</h3>
-          <img src="./images/castle-fireworks.gif" alt="disney castle fireworks">
           <p>Your Results: ${store.score} out of ${store.questions.length}</p>
+          <img src="./images/castle-fireworks.gif" alt="disney castle fireworks">
           <button type='submit' class='btn' id='restartQuiz'>Restart Quiz</button>
       </form>
     </div>

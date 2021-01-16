@@ -129,6 +129,11 @@ p {
   transition: all 0.4s ease 0s;
 }
 
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
 
 .questionScreen{
   text-align: center;
@@ -175,6 +180,8 @@ header{
     .group {
       flex-direction: column;
     }
-
+  
   }
+  
+
   
