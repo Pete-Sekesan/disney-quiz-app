@@ -27,14 +27,14 @@
   
   @font-face {
     font-family: 'waltographregular';
-    src: url('/Fonts/webfontkit-20210115-142712/waltograph.regular-webfont.woff') format('woff2'),
+    src: url('./Fonts/webfontkit-20210115-142712/waltograph.regular-webfont.woff') format('woff2'),
       url('waltograph.regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
   font-family: 'floridaprojectphaseone';
-  src: url('/Fonts/webfontkit-20210115-212212/florida_project_phase_one-webfont.woff') format('woff2'),
+  src: url('./Fonts/webfontkit-20210115-212212/florida_project_phase_one-webfont.woff') format('woff2'),
     url('florida_project_phase_one-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -51,7 +51,7 @@ body {
     background-color: lightgray;
     display: flex;
     flex-direction: column;
-    background-image:url(/images/castle-clouds.jpg);
+    background-image:url(./images/castle-clouds.jpg);
     background-attachment: fixed;
     
 
