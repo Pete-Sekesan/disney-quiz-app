@@ -177,8 +177,8 @@ return `
   //This function creates the template for the Quiz results
   function generateFinalResultsPage() {
     return `
-      <div class="results-page wrapper group">
-      <form>
+      <div class="results-page wrapper">
+      <form class="wrapper group">
           <p>Your Results: ${store.score} out of ${store.questions.length}</p>
           <img src="./images/castle-fireworks.gif" alt="disney castle fireworks">
           <button type='submit' class='btn' id='restartQuiz'>Restart Quiz</button>
