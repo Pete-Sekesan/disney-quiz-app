@@ -81,7 +81,7 @@ const store = {
   //This is the HTML that will be inserted when the user begins the quiz
 function renderIntroScreen() {
 return `
-  <div class='introScreen wrapper'>
+  <div class='introScreen wrapper group'>
           <form>
           <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
                 <button class='btn' type='submit' id='startQuiz'>Let The Magic Begin</button>
@@ -125,7 +125,7 @@ return `
     let questionNumber = questionsList[store.questionNumber];
    
     return `
-    <div class='questionsScreen wrapper'>
+    <div class='questionsScreen wrapper group'>
       <p>${questionNumber.question}</p>
       <form>
         <ol>
@@ -151,7 +151,7 @@ return `
     //console.log(correctAnswer);
     if (store.isCorrect === true) {
       return `
-        <div class='submissionResult wrapper'>
+        <div class='submissionResult wrapper group'>
           <form>
             <p>${correctAnswer} is correct!</p>
             <p>Great Job!</p>
@@ -163,7 +163,7 @@ return `
     }
     else {
       return `
-      <div class='submissionResult wrapper'>
+      <div class='submissionResult wrapper group'>
         <form>
           <p>${store.usersAnswer} is incorrect!</p>
           <p>The correct answer was ${correctAnswer}.</p>
@@ -178,7 +178,7 @@ return `
   //This function creates the template for the Quiz results
   function generateFinalResultsPage() {
     return `
-      <div class="results-page wrapper">
+      <div class="results-page wrapper group">
       <form>
           <h3>Congrats, you finished the quiz!</h3>
           <img src="./images/castle-fireworks.gif" alt="disney castle fireworks">

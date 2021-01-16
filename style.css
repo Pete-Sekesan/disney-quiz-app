@@ -157,5 +157,23 @@ header{
    
   }
 
-  
+  .group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    
+  }
+
+  @media all and (min-width: 600px) {
+
+    section,
+    h1 {
+      padding: 10% 10%;
+    }
+
+    .group {
+      flex-direction: column;
+    }
+
+  }
   
