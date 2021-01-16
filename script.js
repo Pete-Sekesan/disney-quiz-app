@@ -181,7 +181,7 @@ return `
       <div class="results-page wrapper">
       <form>
           <h3>Congrats, you finished the quiz!</h3>
-          <img src="/images/castle-fireworks.gif" alt="disney castle fireworks">
+          <img src="./images/castle-fireworks.gif" alt="disney castle fireworks">
           <p>Your Results: ${store.score} out of ${store.questions.length}</p>
           <p> "It's kind of fun to do the impossible" - Walt Disney</p>
           <button type='submit' class='btn' id='restartQuiz'>Restart Quiz</button>
