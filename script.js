@@ -81,10 +81,10 @@ const store = {
   //This is the HTML that will be inserted when the user begins the quiz
 function renderIntroScreen() {
 return `
-  <div class='introScreen'>
+  <div class='introScreen wrapper'>
           <form>
           <p> Welcome to my Disney Quiz App! Put your knowledge to the test on all things Disney Parks and Resorts! </p>
-                <button class='btn' type='submit' id='startQuiz' autofocus>Let The Magic Begin</button>
+                <button class='btn' type='submit' id='startQuiz'>Let The Magic Begin</button>
             </form>
         </div>
   `
@@ -125,13 +125,13 @@ return `
     let questionNumber = questionsList[store.questionNumber];
    
     return `
-    <div class='questionsScreen'>
+    <div class='questionsScreen wrapper'>
       <p>${questionNumber.question}</p>
       <form>
         <ol>
         ${generateAnswersArray(questionNumber.answers)}
         </ol>
-        <button type='submit' id='submitAnswer'>Submit</button>
+        <button type='submit' class='btn' id='submitAnswer'>Submit</button>
       </form>
     </div>`
   }
@@ -151,42 +151,43 @@ return `
     //console.log(correctAnswer);
     if (store.isCorrect === true) {
       return `
-        <div class='submissionResult'>
+        <div class='submissionResult wrapper'>
           <form>
             <p>${correctAnswer} is correct!</p>
             <p>Great Job!</p>
             <p>Current Score: ${store.score} out of ${store.questions.length}</p>
-            <button type='submit' id='next-question'>Next</button>
+            <button type='submit' class='btn' id='next-question'>Next</button>
           </form>
         </div>
-      `
+      `;
     }
     else {
       return `
-      <div class='submissionResult'>
+      <div class='submissionResult wrapper'>
         <form>
           <p>${store.usersAnswer} is incorrect!</p>
           <p>The correct answer was ${correctAnswer}.</p>
           <p> Just keep swimming!</p>
           <p>Current Score: ${store.score} out of ${store.questions.length}</p>
-          <button type='submit' id='next-question'>Next</button>
+          <button type='submit' class='btn' id='next-question'>Next</button>
         </form>
       </div>
-    `
+    `;
     }
   }
   //This function creates the template for the Quiz results
   function generateFinalResultsPage() {
     return `
-      <div class="results-page">
+      <div class="results-page wrapper">
       <form>
           <h3>Congrats, you finished the quiz!</h3>
+          <img src="/images/castle-fireworks.gif" alt="Italian Trulli">
           <p>Your Results: ${store.score} out of ${store.questions.length}</p>
           <p> "It's kind of fun to do the impossible" - Walt Disney</p>
-          <button type='submit' id='restartQuiz'>Restart Quiz</button>
+          <button type='submit' class='btn' id='restartQuiz'>Restart Quiz</button>
       </form>
     </div>
-    `
+    `;
   }
   /********** RENDER FUNCTION(S) **********/
   

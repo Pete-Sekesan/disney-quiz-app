@@ -1,48 +1,138 @@
-* {
-    box-sizing: border-box;
-  }
+ * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
   
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 100px;
+      margin-right: 100px;
+    }
+
+    @media all and (min-width: 600px) {
+
+      section,
+      h1 {
+        padding: 0 10%;
+      }
+
+      .group {
+        flex-direction: row;
+      }
+
+    }
   
+  @font-face {
+    font-family: 'waltographregular';
+    src: url('/Fonts/webfontkit-20210115-142712/waltograph.regular-webfont.woff') format('woff2'),
+      url('waltograph.regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'floridaprojectphaseone';
+  src: url('/Fonts/webfontkit-20210115-212212/florida_project_phase_one-webfont.woff') format('woff2'),
+    url('florida_project_phase_one-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 body {
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
+    font-family: 'floridaprojectphaseone''Courier New',
+    Courier,
+    monospace;
+    color: white;
     margin: 0;
     background: cover;
     background-color: lightgray;
     display: flex;
     flex-direction: column;
-  }
+    background-image:url(/images/castle-clouds.jpg);
+    background-attachment: fixed;
+    
 
+  }
+.wrapper {
+  position: relative;
+  background-color:transparent;
+  opacity: 90;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  list-style: none;
+  text-align: center;
+  align-items: center;
+
+}
 
 h1 {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 5px;
+    font-size: 75px;
     margin: auto;
     padding: 25px 0 25px 0;
+    font-family: 'waltographregular', "Courier New";
 } 
 
+h2{
+
+  text-align: center;
+  font-family: 'floridaprojectphaseone',
+  'Courier New',
+  Courier,
+  monospace;
+  font-size: 30px;
+  color: whitesmoke;
+}
+h3{
+  font-family: 'floridaprojectphaseone',
+  'Courier New',
+  Courier,
+  monospace;
+  font-size: 20px;
+  font-weight: lighter;
+}
 p {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
-    color: black;
+    font-family: 'floridaprojectphaseone', 'Courier New', Courier, monospace;
+    font-size: 30px;
+    color: whitesmoke;
+    font-weight: lighter;
 }
 
 .btn{
-    text-align: center;
-    border-radius: 8px;
-    background-color: black;
-    color: white;
-    display: block;
-    margin: 0 auto;
-    display: block;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #6B57AB;
+    padding: 20px;
+    border-radius: 50px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    font-family: 'floridaprojectphaseone',
+    'Courier New';
     
+}
+
+.btn:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
 }
 
 
 .questionScreen{
   text-align: center;
+  border: 5px solid;
+  background-color: black;
 }
 
 header{
@@ -52,7 +142,20 @@ header{
     text-align: center;
    list-style: none;
     display: block;
+    list-style-type: none;
+     
+   
   }
   li{
     text-align: center;
+    font-family: 'floridaprojectphaseone',
+    'Courier New',
+    Courier,
+    monospace;
+    font-size: 20px;
+   
+   
   }
+
+  
+  
